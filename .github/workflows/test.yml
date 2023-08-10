@@ -20,10 +20,16 @@ jobs:
         python-version: '3.8'
     - name: Start supervisord
       run: /usr/bin/supervisord
-    - name: Pause 10 seconds for DB startup
-      run: sleep 10
+    - name: Pause 5 seconds for DB startup
+      run: sleep 5
+    - name: Install Poetry
+      run: curl -sSL https://install.python-poetry.org/ | python -
+    - name: Add Poetry to PATH
+      run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
     - name: Run tests
       run: poetry run pytest --cov=agnostic tests/
+      env:
+        PATH:
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       env:
