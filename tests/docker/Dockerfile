@@ -4,12 +4,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y curl make mysql-server \
         postgresql sqlite3 supervisor && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN curl  https://bootstrap.pypa.io/get-pip.py | python3
-# TODO handle poetry
-RUN pip3 install 'Click>=7.0' 'sqlparse>=0.2.4,<0.3.0' 'pytest' 'pytest-cov' \
-    'PyMySQL' 'pg8000'
-RUN pip3 install coveralls sphinx sphinx_rtd_theme
-COPY supervisor.conf /etc/supervisor/conf.d/agnostic-tests.conf
+COPY tests/docker/supervisor.conf /etc/supervisor/conf.d/agnostic-tests.conf
 RUN mkdir -p /var/log/supervisor
 
 # Provide default credentials for integration tests.
@@ -30,6 +25,16 @@ RUN sed --in-place 's:#fsync = on:fsync = off:' \
 
 RUN /etc/init.d/postgresql start && \
     su postgres -c "echo CREATE USER root WITH SUPERUSER PASSWORD \\'root\\' | psql"
+
+# Setup up Python
+# RUN curl  https://bootstrap.pypa.io/get-pip.py | python3
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:$PATH"
+RUN mkdir /opt/agnostic
+COPY pyproject.toml poetry.lock README.md /opt/agnostic/
+COPY src /opt/agnostic/src
+WORKDIR /opt/agnostic
+RUN poetry install
 
 # This environment variable allows Click to print to stdout:
 ENV LANG=C.UTF-8

@@ -23,7 +23,7 @@ jobs:
     - name: Pause 10 seconds for DB startup
       run: sleep 10
     - name: Run tests
-      run: pytest --cov=agnostic tests/
+      run: poetry run pytest --cov=agnostic tests/
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       env:

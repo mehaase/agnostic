@@ -1,5 +1,3 @@
-
-
 require-docker-account:
 	@test -z "${DOCKER_ACCOUNT}" && \
 		echo "[ERROR] Must export DOCKER_ACCOUNT" && \
@@ -7,7 +5,7 @@ require-docker-account:
 		echo "[INFO] DOCKER_ACCOUNT is '${DOCKER_ACCOUNT}'"
 
 build-container: require-docker-account
-	docker build -t agnostic-tests tests/docker
+	docker build -t agnostic-tests -f tests/docker/Dockerfile .
 	docker tag agnostic-tests ${DOCKER_ACCOUNT}/agnostic-tests:latest
 
 push-container: require-docker-account
@@ -22,10 +20,11 @@ start-container: require-docker-account stop-container
 		${DOCKER_ACCOUNT}/agnostic-tests:latest
 
 container-shell:
-	docker exec -it -w /opt/agnostic agnostic-tests bash
+	docker exec -it -w /opt/agnostic agnostic-tests poetry shell
 
 integration-test: require-docker-account start-container
 	@echo "Sleeping 10 seconds so databases can start up"
 	@sleep 10
-	docker exec -it -w /opt/agnostic agnostic-tests pytest --cov=agnostic tests/
+	docker exec -it -w /opt/agnostic agnostic-tests poetry run \
+		pytest --cov=agnostic tests/
 	$(MAKE) stop-container
