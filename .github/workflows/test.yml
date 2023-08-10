@@ -1,4 +1,4 @@
-name: Integration Test
+name: Integration Tests
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
   pull_request:
 
 jobs:
-  integration_test:
+  run_tests:
     runs-on: ubuntu-latest
 
     container:
       image: mehaase/agnostic-tests:latest
       volumes:
-        - :/opt/agnostic
+        - ${{ GITHUB_WORKSPACE }}:/opt/agnostic
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
