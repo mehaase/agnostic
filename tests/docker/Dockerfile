@@ -5,6 +5,7 @@ RUN apt-get update && \
         postgresql sqlite3 supervisor && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN curl  https://bootstrap.pypa.io/get-pip.py | python3
+# TODO handle poetry
 RUN pip3 install 'Click>=7.0' 'sqlparse>=0.2.4,<0.3.0' 'pytest' 'pytest-cov' \
     'PyMySQL' 'pg8000'
 RUN pip3 install coveralls sphinx sphinx_rtd_theme
