@@ -37,4 +37,4 @@ ENV LANG=C.UTF-8
 VOLUME /var/lib/mysql
 
 VOLUME /opt/agnostic
-ENTRYPOINT ["/usr/bin/supervisord"]
+ENTRYPOINT ["/usr/bin/supervisord", "-n"]
