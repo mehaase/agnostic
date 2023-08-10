@@ -1,9 +1,9 @@
 Agnostic Database Migrations
 ============================
 
-[![](https://img.shields.io/pypi/v/agnostic.svg?style=flat-square)](https://pypi.python.org/pypi/agnostic)
-[![](https://img.shields.io/travis/TeamHG-Memex/agnostic.svg?style=flat-square)](https://travis-ci.org/TeamHG-Memex/agnostic)
-[![](https://img.shields.io/coveralls/github/TeamHG-Memex/agnostic.svg?style=flat-square)](https://coveralls.io/github/TeamHG-Memex/agnostic?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/agnostic.svg?style=flat-square)](https://pypi.python.org/pypi/agnostic)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/mehaase/agnostic/test.yml?style=flat-square&label=Integration%20Tests)](https://github.com/mehaase/agnostic/actions/workflows/test.yml)
+[![Coverage](https://img.shields.io/codecov/c/github/mehaase/agnostic?style=flat-square)](https://coveralls.io/github/mehaase/agnostic?branch=master)
 
 Overview
 --------
