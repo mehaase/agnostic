@@ -25,7 +25,7 @@ jobs:
     - name: Install Poetry
       run: curl -sSL https://install.python-poetry.org/ | python -
     - name: Add Poetry to PATH
-      run: echo "/root/.local/bin" >> $GITHUB_PATH
+      run: echo "/github/home/.local/bin" >> $GITHUB_PATH
     - name: Run tests
       run: poetry run pytest --cov=agnostic tests/
       env:
