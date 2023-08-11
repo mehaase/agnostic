@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "agnostic"
-version = "1.0.2"
+version = "1.0.3"
 description = "Agnostic Database Migrations"
 authors = ["Mark E. Haase <mehaase@gmail.com>"]
 license = "MIT"
@@ -31,7 +31,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.bumpver]
-current_version = "1.0.2"
+current_version = "1.0.3"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 commit = true
