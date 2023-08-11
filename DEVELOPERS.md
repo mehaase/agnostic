@@ -8,7 +8,7 @@ Enter the virtual env:
 
 From the virtualenv run:
 
-    (venv) $ bumpver --patch
+    (venv) $ bumpver update --patch
     INFO    - fetching tags from remote (to turn off use: -n / --no-fetch)
     INFO    - Latest version from VCS tag: 1.0.2
     INFO    - Working dir version        : 1.0.2
